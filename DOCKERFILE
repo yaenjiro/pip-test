@@ -1,0 +1,17 @@
+# ベースイメージを指定
+FROM almalinux:latest
+
+# パッケージリストを更新し、基本的なライブラリをインストール
+RUN yum update && yum install -y \
+    python3 \
+    python3-pip \
+    libopencv-dev
+
+# Pythonライブラリのインストール
+RUN pip3 install opencv-python
+
+# コンテナ内で作業するディレクトリを指定
+WORKDIR /app
+
+# コンテナを実行する際に実行されるコマンドを指定
+CMD ["python3 -v"]
